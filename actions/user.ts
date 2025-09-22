@@ -1,38 +1,64 @@
 'use server'
-import { currentUser } from "@clerk/nextjs/server";
-import { prisma } from "@/lib/prisma";
+import { currentUser, auth, clerkClient } from '@clerk/nextjs/server'
+import { prisma } from '@/lib/prisma'
 
 export async function checkUser() {
-  const user = await currentUser();
-  if (!user) return null;
+  const user = await currentUser()
+  if (!user) return null
+
   try {
-    const existUser = await prisma.user.findUnique({
+    let existUser = await prisma.user.findUnique({
       where: {
         clerkId: user.id,
       },
-    });
+    })
 
-    if (existUser) {
-      return existUser;
+    if (!existUser) {
+      const name = `${user.firstName} ${
+        user.lastName != null ? user.lastName : ''
+      }`
+
+      existUser = await prisma.user.create({
+        data: {
+          clerkId: user.id,
+          name,
+          imageUrl: user.imageUrl as string,
+          email: user.emailAddresses[0].emailAddress,
+        },
+      })
     }
 
-    const name = `${user.firstName} ${
-      user.lastName != null ? user.lastName : ""
-    }`;
+    const { orgId } = auth()
 
-    const newUser = await prisma.user.create({
-      data: {
-        clerkId: user.id,
-        name,
-        imageUrl: user.imageUrl as string,
-        email: user.emailAddresses[0].emailAddress,
-      },
-    });
+    if (orgId) {
+      const org = await clerkClient.organizations.getOrganization({
+        organizationId: orgId,
+      })
 
-    return newUser;
+      if (org) {
+        const workspace = await prisma.workspace.findUnique({
+          where: {
+            clerkId: org.id,
+          },
+        })
+
+        if (!workspace) {
+          await prisma.workspace.create({
+            data: {
+              clerkId: org.id,
+              name: org.name,
+              slug: org.slug as string,
+              imageUrl: org.imageUrl,
+            },
+          })
+        }
+      }
+    }
+
+    return existUser
   } catch (error) {
     if (error instanceof Error) {
-      console.log(error.message);
+      console.log(error.message)
     }
   }
 }

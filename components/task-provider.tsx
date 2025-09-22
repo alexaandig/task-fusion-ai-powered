@@ -8,7 +8,7 @@ import {
   updateTask,
 } from "@/actions/tasks";
 import { parseArtifactResponse } from "@/lib/parser";
-import { useUser } from "@clerk/nextjs";
+import { useAuth, useUser } from "@clerk/nextjs";
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -114,11 +114,13 @@ export function TaskProvider({ children }: { children: React.ReactNode }) {
   const [sortBy, setSortBy] = useState<SortOption>("priority");
   const [messages, setMessages] = useState<any[]>([]);
   const { user } = useUser();
+  const { orgId } = useAuth();
 
   const loadTasks = async () => {
+    if (!orgId) return;
     try {
       setLoading(true);
-      const fetchedTasks = await getTasks();
+      const fetchedTasks = await getTasks(orgId);
       if (fetchedTasks) {
         // Convert database types to match our interface
         const convertedTasks = fetchedTasks.map((task) => ({
@@ -136,9 +138,10 @@ export function TaskProvider({ children }: { children: React.ReactNode }) {
   };
 
   const loadMessages = async () => {
+    if (!orgId) return;
     try {
       setMessagesLoading(true);
-      const fetchedMessages = await getMessages();
+      const fetchedMessages = await getMessages(orgId);
       setMessages(fetchedMessages as any);
     } catch (error) {
       console.error("Failed to load messages:", error);
@@ -152,8 +155,9 @@ export function TaskProvider({ children }: { children: React.ReactNode }) {
     priority: Task["priority"],
     description: string
   ) => {
+    if (!orgId) return;
     await toast.promise(
-      createTask(task, priority, description).then((result) => {
+      createTask(task, priority, description, orgId).then((result) => {
         if (result) {
           const newTask = {
             ...result,
@@ -242,6 +246,7 @@ export function TaskProvider({ children }: { children: React.ReactNode }) {
   };
 
   const handleAiInput = async (text: string) => {
+    if (!orgId) return;
     try {
       // Create user message immediately in UI for instant feedback
       const tempUserMessage = {
@@ -254,7 +259,7 @@ export function TaskProvider({ children }: { children: React.ReactNode }) {
       setMessages((prev: any) => [...prev, tempUserMessage]);
 
       // Create user message in database
-      const userMessage = await createMessage("USER", text);
+      const userMessage = await createMessage("USER", text, orgId);
       if (userMessage) {
         // Replace temp message with real one from database
         setMessages((prev: any) =>
@@ -464,7 +469,7 @@ export function TaskProvider({ children }: { children: React.ReactNode }) {
       }
     };
     initializeData();
-  }, []);
+  }, [orgId]);
 
   const value: TaskContextType = {
     tasks,

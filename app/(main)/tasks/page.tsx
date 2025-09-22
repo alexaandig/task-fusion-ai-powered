@@ -9,7 +9,6 @@ import {
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { UserButton } from "@clerk/nextjs";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
@@ -40,7 +39,6 @@ function page({}: Props) {
         </Link>
         <div className="flex items-center gap-2">
           <ModeToggle />
-          <UserButton />
         </div>
       </header>
       <div className="flex-1 min-h-0 overflow-hidden">
