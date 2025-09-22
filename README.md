@@ -93,7 +93,7 @@ task-fusion/
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/alexaandig/task-fusion-ai-powered.git
+   git clone https://github.com/lwshakib/task-fusion-ai-powered.git
    cd task-fusion
    ```
 
@@ -233,8 +233,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-- **Issues**: [GitHub Issues](https://github.com/alexaandig/task-fusion/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/alexaandig/task-fusion/discussions)
+- **Issues**: [GitHub Issues](https://github.com/lwshakib/task-fusion/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/lwshakib/task-fusion/discussions)
 - **Email**: support@taskfusion.com
 
 ---

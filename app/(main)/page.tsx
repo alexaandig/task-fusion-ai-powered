@@ -181,7 +181,7 @@ export default function Home() {
               >
                 <Button
                   size="lg"
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg font-semibold rounded-md shadow-lg hover:shadow-xl transition-all duration-300"
                   onClick={() => (window.location.href = "/tasks")}
                 >
                   Get Started
@@ -193,7 +193,7 @@ export default function Home() {
                     <Button
                       variant="outline"
                       size="lg"
-                      className="px-8 py-6 text-lg font-semibold rounded-xl border-2 hover:bg-accent transition-all duration-300"
+                      className="px-8 py-6 text-lg font-semibold rounded-md border-2 hover:bg-accent transition-all duration-300"
                     >
                       <Play className="mr-2 h-5 w-5" />
                       Watch Demo
@@ -287,7 +287,7 @@ export default function Home() {
               <Card className="group overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-primary/5 to-primary/10">
                 <CardHeader className="pb-4">
                   <div className="flex items-center space-x-3">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary group-hover:scale-110 transition-transform duration-300">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-md bg-primary group-hover:scale-110 transition-transform duration-300">
                       <MessageSquare className="h-6 w-6 text-primary-foreground" />
                     </div>
                     <div>
@@ -302,7 +302,7 @@ export default function Home() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    <div className="rounded-lg bg-card/80 p-4 shadow-sm border">
+                    <div className="rounded-md bg-card/80 p-4 shadow-sm border">
                       <div className="flex items-start space-x-3">
                         <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center">
                           <span className="text-primary-foreground text-sm font-semibold">
@@ -318,7 +318,7 @@ export default function Home() {
                         </div>
                       </div>
                     </div>
-                    <div className="rounded-lg bg-muted/50 p-4">
+                    <div className="rounded-md bg-muted/50 p-4">
                       <div className="flex items-start space-x-3">
                         <div className="h-8 w-8 rounded-full bg-muted-foreground flex items-center justify-center">
                           <span className="text-background text-sm font-semibold">
@@ -342,7 +342,7 @@ export default function Home() {
               <Card className="group overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-secondary/5 to-secondary/10">
                 <CardHeader className="pb-4">
                   <div className="flex items-center space-x-3">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-secondary group-hover:scale-110 transition-transform duration-300">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-md bg-secondary group-hover:scale-110 transition-transform duration-300">
                       <LayoutGrid className="h-6 w-6 text-secondary-foreground" />
                     </div>
                     <div>
@@ -357,7 +357,7 @@ export default function Home() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
-                    <div className="flex items-center space-x-3 rounded-lg bg-card/80 p-3 shadow-sm border">
+                    <div className="flex items-center space-x-3 rounded-md bg-card/80 p-3 shadow-sm border">
                       <CheckSquare className="h-5 w-5 text-primary" />
                       <span className="flex-1 text-sm font-medium text-foreground">
                         Review quarterly reports
@@ -366,7 +366,7 @@ export default function Home() {
                         High
                       </Badge>
                     </div>
-                    <div className="flex items-center space-x-3 rounded-lg bg-card/80 p-3 shadow-sm border">
+                    <div className="flex items-center space-x-3 rounded-md bg-card/80 p-3 shadow-sm border">
                       <CheckSquare className="h-5 w-5 text-primary" />
                       <span className="flex-1 text-sm font-medium text-foreground">
                         Client meeting preparation
@@ -375,7 +375,7 @@ export default function Home() {
                         Medium
                       </Badge>
                     </div>
-                    <div className="flex items-center space-x-3 rounded-lg bg-muted/50 p-3">
+                    <div className="flex items-center space-x-3 rounded-md bg-muted/50 p-3">
                       <CheckSquare className="h-5 w-5 text-muted-foreground" />
                       <span className="flex-1 text-sm text-muted-foreground line-through">
                         Update project timeline
@@ -467,7 +467,7 @@ export default function Home() {
                 >
                   <dt className="text-base font-semibold leading-7 text-foreground">
                     <div
-                      className={`mb-6 flex h-16 w-16 items-center justify-center rounded-xl ${feature.color} group-hover:scale-110 transition-transform duration-300`}
+                      className={`mb-6 flex h-16 w-16 items-center justify-center rounded-md ${feature.color} group-hover:scale-110 transition-transform duration-300`}
                     >
                       <feature.icon className="h-8 w-8 text-white" />
                     </div>
@@ -505,7 +505,7 @@ export default function Home() {
                 variants={fadeInUp}
               >
                 <div className="flex justify-center mb-4">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-primary/10">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-md bg-primary/10">
                     <stat.icon className="h-8 w-8 text-primary" />
                   </div>
                 </div>
@@ -557,7 +557,7 @@ export default function Home() {
               <Button
                 size="lg"
                 variant="secondary"
-                className="px-8 py-6 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                className="px-8 py-6 text-lg font-semibold rounded-md shadow-lg hover:shadow-xl transition-all duration-300"
                 onClick={() => (window.location.href = "/tasks")}
               >
                 Start Now
@@ -566,7 +566,7 @@ export default function Home() {
               <Button
                 variant="outline"
                 size="lg"
-                className="border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10 px-8 py-6 text-lg font-semibold rounded-xl transition-all duration-300"
+                className="border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10 px-8 py-6 text-lg font-semibold rounded-md transition-all duration-300"
               >
                 Learn More
               </Button>
@@ -588,7 +588,7 @@ export default function Home() {
                 viewport={{ once: true }}
               >
                 <div className="flex items-center space-x-2">
-                  <div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center">
+                  <div className="h-8 w-8 bg-primary rounded-md flex items-center justify-center">
                     <CheckSquare className="h-5 w-5 text-primary-foreground" />
                   </div>
                   <span className="text-xl font-bold text-foreground">

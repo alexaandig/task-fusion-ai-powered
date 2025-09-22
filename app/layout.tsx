@@ -41,7 +41,7 @@ export default function RootLayout({
         baseTheme: [shadcn],
       }}
     >
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <body>
           <ThemeProvider
             attribute="class"

@@ -55,7 +55,7 @@ function page({}: Props) {
               value="messages"
               className="flex-1 flex flex-col min-h-0"
             >
-              <div className="flex-1 min-h-0 p-6 overflow-hidden">
+              <div className="flex-1 min-h-0 p-2 overflow-hidden">
                 <MessageView />
               </div>
               <div className="border-t flex-shrink-0">
@@ -73,7 +73,7 @@ function page({}: Props) {
           <ResizablePanelGroup direction="horizontal" className="h-full w-full">
             <ResizablePanel defaultSize={50} minSize={25} maxSize={75}>
               <div className="flex h-full flex-col">
-                <div className="flex-1 min-h-0 p-6 overflow-hidden">
+                <div className="flex-1 min-h-0 p-2 overflow-hidden">
                   <MessageView />
                 </div>
                 <div className="border-t flex-shrink-0">

@@ -91,7 +91,7 @@ export default function AiInput() {
   };
   return (
     <div className="w-full py-4">
-      <div className="relative max-w-full border rounded-[22px] border-black/5 p-1 w-full mx-auto">
+      <div className="relative max-w-full border rounded-md border-black/5 p-1 w-full mx-auto">
         <div className="relative rounded-2xl border border-black/5 bg-neutral-800/5 flex flex-col">
           <div
             className="overflow-y-auto"
@@ -123,7 +123,7 @@ export default function AiInput() {
             </div>
           </div>
 
-          <div className="h-12 bg-black/5 dark:bg-white/5 rounded-b-xl flex items-center justify-end px-3">
+          <div className="h-12 bg-black/5 dark:bg-white/5 rounded-b-md flex items-center justify-end px-3">
             <Button
               type="button"
               onClick={handleSubmit}

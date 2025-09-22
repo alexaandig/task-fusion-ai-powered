@@ -17,10 +17,10 @@ export default function MessageView() {
   if (messagesLoading) {
     return (
       <div className="h-full flex flex-col overflow-hidden">
-        <div className="px-4 space-y-2">
+        <div className="space-y-2">
           {/* AI Message Skeleton */}
           <div className="flex w-full mb-4 justify-start">
-            <div className="max-w-[80%] p-3 bg-muted rounded-lg animate-pulse">
+            <div className="max-w-[80%] p-3 bg-muted rounded-md animate-pulse">
               <div className="flex flex-col gap-1">
                 <div className="h-4 w-8 bg-muted-foreground/20 rounded"></div>
                 <div className="space-y-2">
@@ -35,7 +35,7 @@ export default function MessageView() {
 
           {/* User Message Skeleton */}
           <div className="flex w-full mb-4 justify-end">
-            <div className="max-w-[80%] p-3 bg-primary/20 rounded-lg animate-pulse">
+            <div className="max-w-[80%] p-3 bg-primary/20 rounded-md animate-pulse">
               <div className="flex flex-col gap-1">
                 <div className="h-4 w-12 bg-primary/30 rounded"></div>
                 <div className="space-y-2">
@@ -49,7 +49,7 @@ export default function MessageView() {
 
           {/* AI Message Skeleton */}
           <div className="flex w-full mb-4 justify-start">
-            <div className="max-w-[80%] p-3 bg-muted rounded-lg animate-pulse">
+            <div className="max-w-[80%] p-3 bg-muted rounded-md animate-pulse">
               <div className="flex flex-col gap-1">
                 <div className="h-4 w-8 bg-muted-foreground/20 rounded"></div>
                 <div className="space-y-2">
@@ -63,7 +63,7 @@ export default function MessageView() {
 
           {/* User Message Skeleton */}
           <div className="flex w-full mb-4 justify-end">
-            <div className="max-w-[80%] p-3 bg-primary/20 rounded-lg animate-pulse">
+            <div className="max-w-[80%] p-3 bg-primary/20 rounded-md animate-pulse">
               <div className="flex flex-col gap-1">
                 <div className="h-4 w-12 bg-primary/30 rounded"></div>
                 <div className="h-4 bg-primary/30 rounded w-1/3"></div>
@@ -74,7 +74,7 @@ export default function MessageView() {
 
           {/* AI Message Skeleton */}
           <div className="flex w-full mb-4 justify-start">
-            <div className="max-w-[80%] p-3 bg-muted rounded-lg animate-pulse">
+            <div className="max-w-[80%] p-3 bg-muted rounded-md animate-pulse">
               <div className="flex flex-col gap-1">
                 <div className="h-4 w-8 bg-muted-foreground/20 rounded"></div>
                 <div className="space-y-2">
@@ -95,7 +95,7 @@ export default function MessageView() {
   return (
     <div className="h-full flex flex-col overflow-hidden">
       <ScrollArea className="flex-1 min-h-0" viewportRef={viewportRef}>
-        <div className="px-4 space-y-2">
+        <div className="space-y-2">
           {messages && messages.length === 0 ? (
             <div className="flex items-center justify-center h-32 text-muted-foreground">
               <div className="text-center">

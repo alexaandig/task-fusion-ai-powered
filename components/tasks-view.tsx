@@ -147,7 +147,7 @@ export default function TasksView() {
           {Array.from({ length: 5 }).map((_, index) => (
             <div
               key={index}
-              className="p-4 border rounded-lg bg-card animate-pulse"
+              className="p-4 border rounded-md bg-card animate-pulse"
             >
               <div className="flex items-start justify-between">
                 <div className="flex items-start gap-3 flex-1">
@@ -316,7 +316,7 @@ export default function TasksView() {
               >
                 <PopoverTrigger asChild>
                   <div
-                    className={`p-4 border rounded-lg bg-card hover:bg-accent/50 transition-colors cursor-pointer ${
+                    className={`p-4 border rounded-md bg-card hover:bg-accent/50 transition-colors cursor-pointer ${
                       task.completed ? "opacity-60" : ""
                     }`}
                   >
