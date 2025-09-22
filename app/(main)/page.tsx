@@ -251,7 +251,7 @@ export default function Home() {
                   <img
                     src="/hero.png"
                     alt="TaskFusion App Preview"
-                    className="relative w-full max-w-4xl rounded-2xl shadow-2xl ring-1 ring-border/50"
+                    className="relative w-full max-w-4xl rounded-md shadow-2xl ring-1 ring-border/50"
                   />
                 </div>
               </div>

@@ -92,7 +92,7 @@ export default function AiInput() {
   return (
     <div className="w-full py-4">
       <div className="relative max-w-full border rounded-md border-black/5 p-1 w-full mx-auto">
-        <div className="relative rounded-2xl border border-black/5 bg-neutral-800/5 flex flex-col">
+        <div className="relative rounded-md border border-black/5 bg-neutral-800/5 flex flex-col">
           <div
             className="overflow-y-auto"
             style={{ maxHeight: `${MAX_HEIGHT}px` }}
@@ -102,7 +102,7 @@ export default function AiInput() {
                 id="ai-input-04"
                 value={value}
                 placeholder=""
-                className="w-full rounded-2xl rounded-b-none px-4 py-3 bg-black/5 dark:bg-white/5 border-none dark:text-white resize-none focus-visible:ring-0 leading-[1.2]"
+                className="w-full rounded-md rounded-b-none px-4 py-3 bg-black/5 dark:bg-white/5 border-none dark:text-white resize-none focus-visible:ring-0 leading-[1.2]"
                 ref={textareaRef}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" && !e.shiftKey) {
