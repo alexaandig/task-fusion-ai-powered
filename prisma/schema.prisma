@@ -30,10 +30,11 @@ model User {
 
 model Workspace {
   id        String     @id @default(cuid())
-  clerkId   String     @unique
+  clerkId   String?     @unique
   name      String
-  slug      String
+  slug      String?
   imageUrl  String?
+  isPersonal Boolean @default(false)
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
   members   WorkspaceUser[]

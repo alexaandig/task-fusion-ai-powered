@@ -26,6 +26,20 @@ export async function checkUser() {
           email: user.emailAddresses[0].emailAddress,
         },
       })
+
+      // Create a personal workspace for the new user
+      await prisma.workspace.create({
+        data: {
+          name: `${name}'s Workspace`,
+          isPersonal: true,
+          members: {
+            create: {
+              userId: existUser.id,
+              role: 'ADMIN',
+            },
+          },
+        },
+      })
     }
 
     const { orgId } = auth()
@@ -64,25 +78,31 @@ export async function checkUser() {
 }
 
 export async function getWorkspaces() {
-  const { userId } = auth()
-  if (!userId) return []
+  const { userId: clerkUserId } = auth()
+  if (!clerkUserId) return []
 
   try {
-    const orgs = await clerkClient.users.getOrganizationMembershipList({
-      userId,
-    })
-
-    const workspaceIds = orgs.map((org) => org.organization.id)
-
-    const workspaces = await prisma.workspace.findMany({
-      where: {
-        clerkId: {
-          in: workspaceIds,
+    const user = await prisma.user.findUnique({
+      where: { clerkId: clerkUserId },
+      include: {
+        workspaces: {
+          include: {
+            workspace: true,
+          },
         },
       },
     })
 
-    return workspaces
+    if (!user) return []
+
+    const personalWorkspace = user.workspaces.find(
+      (w) => w.workspace.isPersonal
+    )?.workspace
+    const orgWorkspaces = user.workspaces
+      .filter((w) => !w.workspace.isPersonal)
+      .map((w) => w.workspace)
+
+    return [personalWorkspace, ...orgWorkspaces].filter(Boolean)
   } catch (error) {
     if (error instanceof Error) {
       console.log(error.message)

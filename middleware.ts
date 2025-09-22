@@ -14,12 +14,7 @@ export default authMiddleware({
       return NextResponse.next()
     }
 
-    if (!auth.orgId && url.pathname !== '/create-organization') {
-      const newUrl = new URL('/create-organization', req.url)
-      return NextResponse.redirect(newUrl)
-    }
-
-    if (auth.orgId && url.pathname === '/') {
+    if (auth.userId && url.pathname === '/') {
       const newUrl = new URL('/dashboard', req.url)
       return NextResponse.redirect(newUrl)
     }
