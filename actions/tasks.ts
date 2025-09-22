@@ -1,27 +1,35 @@
 "use server";
 import { prisma } from "@/lib/prisma";
 import { checkUser } from "./user";
+import { auth } from "@clerk/nextjs/server";
 
 export const createTask = async (
   task: string,
   priority: string,
-  description: string
+  description: string,
+  workspaceId: string
 ) => {
   const user = await checkUser();
   if (!user) return null;
 
   const newTask = await prisma.task.create({
-    data: { task, priority, description, clerkId: user.clerkId },
+    data: {
+      task,
+      priority,
+      description,
+      clerkId: user.clerkId,
+      workspaceId,
+    },
   });
   return newTask;
 };
 
-export const getTasks = async () => {
+export const getTasks = async (workspaceId: string) => {
   const user = await checkUser();
   if (!user) return null;
 
   const tasks = await prisma.task.findMany({
-    where: { clerkId: user.clerkId },
+    where: { clerkId: user.clerkId, workspaceId },
     orderBy: { createdAt: "desc" },
   });
   return tasks;

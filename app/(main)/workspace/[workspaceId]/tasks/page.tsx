@@ -12,19 +12,25 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
+import { TaskProvider } from "@/components/task-provider";
 
-type Props = {};
+type Props = {
+  params: {
+    workspaceId: string;
+  };
+};
 
-function page({}: Props) {
+function page({ params }: Props) {
   const { resolvedTheme } = useTheme();
 
   return (
-    <div className="h-screen w-full flex flex-col overflow-hidden">
-      <header className="h-16 border-b flex items-center justify-between px-6 flex-shrink-0">
-        <Link
-          href="/"
-          className="flex items-center gap-3 hover:opacity-80 transition-opacity"
-        >
+    <TaskProvider workspaceId={params.workspaceId}>
+      <div className="h-screen w-full flex flex-col overflow-hidden">
+        <header className="h-16 border-b flex items-center justify-between px-6 flex-shrink-0">
+          <Link
+            href="/"
+            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+          >
           <>
             <Image
               src={
@@ -86,7 +92,7 @@ function page({}: Props) {
           </ResizablePanelGroup>
         </div>
       </div>
-    </div>
+    </TaskProvider>
   );
 }
 
