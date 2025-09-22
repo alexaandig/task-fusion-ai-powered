@@ -42,7 +42,7 @@ export async function checkUser() {
       })
     }
 
-    const { orgId } = auth()
+    const { orgId } = await auth()
 
     if (orgId) {
       const org = await clerkClient.organizations.getOrganization({
@@ -78,7 +78,7 @@ export async function checkUser() {
 }
 
 export async function getWorkspaces() {
-  const { userId: clerkUserId } = auth()
+  const { userId: clerkUserId } = await auth()
   if (!clerkUserId) return []
 
   try {
