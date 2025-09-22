@@ -24,9 +24,37 @@ model User {
   updatedAt DateTime   @updatedAt
   messages Message[]
   tasks Task[]
+  workspaces WorkspaceUser[]
   @@index([clerkId])
 }
 
+model Workspace {
+  id        String     @id @default(cuid())
+  clerkId   String?     @unique
+  name      String
+  slug      String?
+  imageUrl  String?
+  isPersonal Boolean @default(false)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  members   WorkspaceUser[]
+  tasks     Task[]
+  messages  Message[]
+}
+
+model WorkspaceUser {
+  id          String   @id @default(cuid())
+  userId      String
+  workspaceId String
+  role        String   @default("MEMBER")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, workspaceId])
+}
 
 model Task {
   id        String     @id @default(cuid())
@@ -38,6 +66,8 @@ model Task {
   updatedAt DateTime   @updatedAt
   clerkId String
   user User @relation(fields: [clerkId], references: [clerkId])
+  workspaceId String
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
   @@index([clerkId])
 }
 
@@ -50,5 +80,7 @@ model Message {
   sender String @default("USER")
   clerkId String
   user User @relation(fields: [clerkId], references: [clerkId])
+  workspaceId String
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
   @@index([clerkId])
 }
