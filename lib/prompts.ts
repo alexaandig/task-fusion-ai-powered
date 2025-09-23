@@ -47,7 +47,7 @@ FORMAT:
 
 ### Task Creation Rules:
 1. **Project Breakdown**: When user describes a project, create a complete task breakdown (5-15 tasks typical)
-2. **Task Titles**: Keep concise but descriptive (3-8 words ideal)
+2. **Task Titles**: Keep concise but descriptive (3-8 words ideal) and add Task number for example T001: Set up React frontend project
 3. **Descriptions**: Include for tasks requiring technical specifications, multiple steps, or unclear scope
 4. **Priority Logic**: 
    - HIGH: Critical path, blockers, urgent deadlines
