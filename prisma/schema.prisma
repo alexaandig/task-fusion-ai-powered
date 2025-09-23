@@ -15,40 +15,83 @@ datasource db {
 
 
 model User {
-  id        String     @id @default(cuid())
-  clerkId   String     @unique
-  name      String
-  email     String     @unique
-  imageUrl  String?
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  messages Message[]
-  tasks Task[]
+  id            String          @id @default(cuid())
+  clerkId       String          @unique
+  name          String
+  email         String          @unique
+  imageUrl      String?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  workspaces    WorkspaceUser[]
+  sentMessages  Message[]
+  createdTasks  Task[]
+
   @@index([clerkId])
 }
 
+model Workspace {
+  id          String          @id @default(cuid())
+  clerkOrgId  String          @unique
+  name        String
+  slug        String          @unique
+  imageUrl    String?
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  members     WorkspaceUser[]
+  tasks       Task[]
+  messages    Message[]
+
+  @@index([clerkOrgId])
+}
+
+model WorkspaceUser {
+  id          String    @id @default(cuid())
+  userId      String
+  workspaceId String
+  role        String    @default("MEMBER") // e.g., ADMIN, MEMBER
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, workspaceId])
+  @@index([userId])
+  @@index([workspaceId])
+}
 
 model Task {
-  id        String     @id @default(cuid())
-  task     String
-  priority String @default("LOW")
-  description String?
-  completed Boolean    @default(false)
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  clerkId String
-  user User @relation(fields: [clerkId], references: [clerkId])
-  @@index([clerkId])
+  id            String     @id @default(cuid())
+  task          String
+  priority      String     @default("LOW")
+  description   String?
+  completed     Boolean    @default(false)
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  workspaceId   String
+  workspace     Workspace  @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  createdById   String
+  createdBy     User       @relation(fields: [createdById], references: [id])
+
+  @@index([workspaceId])
+  @@index([createdById])
 }
 
-
 model Message {
-  id        String     @id @default(cuid())
-  content String
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  sender String @default("USER")
-  clerkId String
-  user User @relation(fields: [clerkId], references: [clerkId])
-  @@index([clerkId])
+  id            String    @id @default(cuid())
+  content       String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  sender        String    @default("USER") // "USER" or "AI"
+
+  workspaceId   String
+  workspace     Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  userId        String
+  user          User      @relation(fields: [userId], references: [id])
+
+  @@index([workspaceId])
+  @@index([userId])
 }

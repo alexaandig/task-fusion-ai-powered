@@ -1,8 +1,10 @@
 "use server";
 import { prisma } from "@/lib/prisma";
 import { checkUser } from "./user";
+import { revalidatePath } from "next/cache";
 
 export const createTask = async (
+  workspaceId: string,
   task: string,
   priority: string,
   description: string
@@ -11,17 +13,24 @@ export const createTask = async (
   if (!user) return null;
 
   const newTask = await prisma.task.create({
-    data: { task, priority, description, clerkId: user.clerkId },
+    data: {
+      task,
+      priority,
+      description,
+      workspaceId,
+      createdById: user.id,
+    },
   });
+  revalidatePath(`/workspace/${workspaceId}/tasks`);
   return newTask;
 };
 
-export const getTasks = async () => {
+export const getTasks = async (workspaceId: string) => {
   const user = await checkUser();
   if (!user) return null;
 
   const tasks = await prisma.task.findMany({
-    where: { clerkId: user.clerkId },
+    where: { workspaceId },
     orderBy: { createdAt: "desc" },
   });
   return tasks;
@@ -43,7 +52,7 @@ export const updateTask = async (
   }
 
   const updatedTask = await prisma.task.update({
-    where: { id, clerkId: user.clerkId },
+    where: { id },
     data: updateData,
   });
   return updatedTask;
@@ -54,7 +63,7 @@ export const deleteTask = async (id: string) => {
   if (!user) return null;
 
   const deletedTask = await prisma.task.delete({
-    where: { id, clerkId: user.clerkId },
+    where: { id },
   });
   return deletedTask;
 };
@@ -64,7 +73,7 @@ export const toggleTaskCompletion = async (id: string, completed: boolean) => {
   if (!user) return null;
 
   const updatedTask = await prisma.task.update({
-    where: { id, clerkId: user.clerkId },
+    where: { id },
     data: { completed },
   });
   return updatedTask;
