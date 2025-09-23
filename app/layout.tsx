@@ -2,6 +2,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { ClerkProvider } from "@clerk/nextjs";
 import { shadcn } from "@clerk/themes";
+import { geist } from "@/lib/fonts"
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -42,7 +43,7 @@ export default function RootLayout({
       }}
     >
       <html lang="en" suppressHydrationWarning>
-        <body>
+        <body className={`${geist.className} antialiased`}>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
