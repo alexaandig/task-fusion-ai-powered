@@ -107,7 +107,13 @@ const sortTasks = (tasks: Task[], sortBy: SortOption) => {
   return [...sortedPendingTasks, ...sortedCompletedTasks];
 };
 
-export function TaskProvider({ children }: { children: React.ReactNode }) {
+export function TaskProvider({
+  children,
+  workspaceId,
+}: {
+  children: React.ReactNode;
+  workspaceId: string;
+}) {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
   const [messagesLoading, setMessagesLoading] = useState(true);
@@ -118,9 +124,8 @@ export function TaskProvider({ children }: { children: React.ReactNode }) {
   const loadTasks = async () => {
     try {
       setLoading(true);
-      const fetchedTasks = await getTasks();
+      const fetchedTasks = await getTasks(workspaceId);
       if (fetchedTasks) {
-        // Convert database types to match our interface
         const convertedTasks = fetchedTasks.map((task) => ({
           ...task,
           description: task.description || undefined,
@@ -138,7 +143,7 @@ export function TaskProvider({ children }: { children: React.ReactNode }) {
   const loadMessages = async () => {
     try {
       setMessagesLoading(true);
-      const fetchedMessages = await getMessages();
+      const fetchedMessages = await getMessages(workspaceId);
       setMessages(fetchedMessages as any);
     } catch (error) {
       console.error("Failed to load messages:", error);
@@ -153,7 +158,7 @@ export function TaskProvider({ children }: { children: React.ReactNode }) {
     description: string
   ) => {
     await toast.promise(
-      createTask(task, priority, description).then((result) => {
+      createTask(workspaceId, task, priority, description).then((result) => {
         if (result) {
           const newTask = {
             ...result,
@@ -254,7 +259,7 @@ export function TaskProvider({ children }: { children: React.ReactNode }) {
       setMessages((prev: any) => [...prev, tempUserMessage]);
 
       // Create user message in database
-      const userMessage = await createMessage("USER", text);
+      const userMessage = await createMessage(workspaceId, "USER", text);
       if (userMessage) {
         // Replace temp message with real one from database
         setMessages((prev: any) =>
