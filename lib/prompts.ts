@@ -76,41 +76,41 @@ FORMAT:
 **Example 1 - Full Project Breakdown**:
 User: "I want to build a task management web app with React and Node.js"
 <artifact>
-<task type="create" description="Initialize React project with TypeScript, routing, and essential dependencies" priority="HIGH">Set up React frontend project</task>
-<task type="create" description="Express.js server with middleware, CORS, and basic structure" priority="HIGH">Create Node.js backend API</task>
-<task type="create" description="MongoDB/PostgreSQL schema for users, tasks, and projects" priority="HIGH">Design database schema</task>
-<task type="create" description="JWT-based authentication with login, register, and middleware" priority="HIGH">Implement user authentication</task>
-<task type="create" description="CRUD operations for tasks with filtering and sorting" priority="MEDIUM">Build task management API</task>
-<task type="create" description="Responsive UI components for task lists, forms, and navigation" priority="MEDIUM">Create frontend components</task>
-<task type="create" description="Connect React components to backend API with error handling" priority="MEDIUM">Integrate frontend with API</task>
-<task type="create" description="Unit tests for API endpoints and React components" priority="MEDIUM">Write test suites</task>
-<task type="create" description="Deploy to cloud platform with environment configuration" priority="LOW">Deploy application</task>
+<task type="create" description="Initialize React project with TypeScript, routing, and essential dependencies" priority="HIGH">T001: Set up React frontend project</task>
+<task type="create" description="Express.js server with middleware, CORS, and basic structure" priority="HIGH">T002: Create Node.js backend API</task>
+<task type="create" description="MongoDB/PostgreSQL schema for users, tasks, and projects" priority="HIGH">T003: Design database schema</task>
+<task type="create" description="JWT-based authentication with login, register, and middleware" priority="HIGH">T004: Implement user authentication</task>
+<task type="create" description="CRUD operations for tasks with filtering and sorting" priority="MEDIUM">T005: Build task management API</task>
+<task type="create" description="Responsive UI components for task lists, forms, and navigation" priority="MEDIUM">T006: Create frontend components</task>
+<task type="create" description="Connect React components to backend API with error handling" priority="MEDIUM">T007: Integrate frontend with API</task>
+<task type="create" description="Unit tests for API endpoints and React components" priority="MEDIUM">T008: Write test suites</task>
+<task type="create" description="Deploy to cloud platform with environment configuration" priority="LOW">T009: Deploy application</task>
 <task type="response">I've created a comprehensive task breakdown for your React/Node.js task management app. The tasks are prioritized and sequenced logically, starting with the core setup and moving through development to deployment.</task>
 </artifact>
 
 **Example 2 - Simple Task Management**:
-User: "Mark 'Set up React frontend project' as completed"
+User: "Mark 'T001: Set up React frontend project' as completed"
 <artifact>
-<task type="update" id="123e4567-e89b-12d3-a456-426614174000" completed="true">Set up React frontend project</task>
+<task type="update" id="123e4567-e89b-12d3-a456-426614174000" completed="true">T001: Set up React frontend project</task>
 <task type="response">Great! I've marked the React frontend setup as completed. You're making good progress on your project.</task>
 </artifact>
 
 **Example 3 - Context-Aware Update**:
 User: "Change the database task to use PostgreSQL instead"
 <artifact>
-<task type="update" description="PostgreSQL schema design with proper indexing for users, tasks, and projects" id="456e7890-e89b-12d3-a456-426614174001">Design PostgreSQL database schema</task>
+<task type="update" description="PostgreSQL schema design with proper indexing for users, tasks, and projects" id="456e7890-e89b-12d3-a456-426614174001">T001: Design PostgreSQL database schema</task>
 <task type="response">I've updated the database task to specifically use PostgreSQL instead of MongoDB. The description now includes PostgreSQL-specific considerations.</task>
 </artifact>
 
 **Example 4 - Learning Project**:
 User: "I want to learn machine learning with Python"
 <artifact>
-<task type="create" description="Install Python, Jupyter, pandas, numpy, scikit-learn, and matplotlib" priority="HIGH">Set up Python ML environment</task>
-<task type="create" description="Complete online course or textbook covering ML fundamentals" priority="HIGH">Study ML theory and concepts</task>
-<task type="create" description="Work through pandas and numpy tutorials for data manipulation" priority="MEDIUM">Learn data preprocessing</task>
-<task type="create" description="Implement linear regression, decision trees, and clustering from scratch" priority="MEDIUM">Practice core algorithms</task>
-<task type="create" description="Complete Kaggle competition or personal dataset project" priority="MEDIUM">Build first ML project</task>
-<task type="create" description="Learn model evaluation, cross-validation, and hyperparameter tuning" priority="LOW">Advanced model optimization</task>
+<task type="create" description="Install Python, Jupyter, pandas, numpy, scikit-learn, and matplotlib" priority="HIGH">T001: Set up Python ML environment</task>
+<task type="create" description="Complete online course or textbook covering ML fundamentals" priority="HIGH">T002: Study ML theory and concepts</task>
+<task type="create" description="Work through pandas and numpy tutorials for data manipulation" priority="MEDIUM">T003: Learn data preprocessing</task>
+<task type="create" description="Implement linear regression, decision trees, and clustering from scratch" priority="MEDIUM">T004: Practice core algorithms</task>
+<task type="create" description="Complete Kaggle competition or personal dataset project" priority="MEDIUM">T005: Build first ML project</task>
+<task type="create" description="Learn model evaluation, cross-validation, and hyperparameter tuning" priority="LOW">T006: Advanced model optimization</task>
 <task type="response">I've created a structured learning path for machine learning with Python. The tasks progress from environment setup through theory to hands-on projects, giving you a solid foundation in ML.</task>
 </artifact>
 
