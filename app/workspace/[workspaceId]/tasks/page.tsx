@@ -9,7 +9,9 @@ import {
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { UserButton } from "@clerk/nextjs";
+import { OrganizationProfile, UserButton } from "@clerk/nextjs";
+import { Button } from "@/components/ui/button";
+import { WorkspaceSwitcher } from "@/components/workspace-switcher";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
@@ -38,9 +40,13 @@ function page({}: Props) {
             <h1 className="text-xl font-semibold">Task Fusion</h1>
           </>
         </Link>
-        <div className="flex items-center gap-2">
-          <ModeToggle />
+        <div className="flex items-center gap-4">
+          <Button asChild variant="outline">
+            <Link href="settings">Manage Workspace</Link>
+          </Button>
+          <WorkspaceSwitcher />
           <UserButton />
+          <ModeToggle />
         </div>
       </header>
       <div className="flex-1 min-h-0 overflow-hidden">
